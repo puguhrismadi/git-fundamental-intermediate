@@ -55,20 +55,10 @@ Peserta mampu:
 
 ### Materi:
 - Konsep repository & working tree
-- Membuat repository:
-  - `git init`
-- Status file:
-  - `git status`
-- Menyimpan revisi:
-  - `git add`
-  - `git commit`
-- Melihat histori revisi:
-  - `git log`
-  - `git log --oneline`
-
-### Praktik:
-- Membuat repository lokal
-- Commit bertahap
+- Membuat repository (`git init`)
+- Status file (`git status`)
+- Menyimpan revisi (`git add`, `git commit`)
+- Melihat histori revisi (`git log`, `git log --oneline`)
 
 📌 Tutorial Git: 02, 03, 04
 
@@ -77,20 +67,10 @@ Peserta mampu:
 ## PERTEMUAN 3 – Perbandingan Revisi Git (Single Developer – Python)
 **Durasi:** 2 Jam  
 
-### Studi Kasus:
-**Aplikasi Python CLI – Task Manager**
-
 ### Materi:
 - Struktur proyek Python
 - Commit berbasis fitur
-- Melihat perbedaan revisi:
-  - `git diff`
-  - Perbandingan working tree vs staging
-  - Perbandingan antar commit
-
-### Praktik:
-- Implementasi fitur Python
-- Analisis perubahan kode
+- Perbandingan revisi (`git diff`)
 
 📌 Tutorial Git: 05
 
@@ -100,20 +80,10 @@ Peserta mampu:
 **Durasi:** 2 Jam  
 
 ### Materi:
-- Membatalkan perubahan file:
-  - `git restore`
-- Reset commit:
-  - `git reset --soft`
-  - `git reset --mixed`
-  - `git reset --hard`
-- Revert commit:
-  - `git revert`
-- Perbedaan reset vs revert
-- Best practice undo dalam tim
-
-### Praktik:
-- Simulasi kesalahan commit
-- Pemulihan source code
+- Membatalkan perubahan (`git restore`)
+- Reset commit (`git reset --soft/mixed/hard`)
+- Revert commit (`git revert`)
+- Reset vs Revert
 
 📌 Tutorial Git: 06, 08
 
@@ -123,18 +93,9 @@ Peserta mampu:
 **Durasi:** 2 Jam  
 
 ### Materi:
-- Konsep percabangan (branch)
-- Perintah branch:
-  - `git branch`
-  - `git checkout`
-  - `git switch`
-- Menggabungkan branch:
-  - `git merge`
+- Branch (`git branch`, `git checkout`, `git switch`)
+- Merge (`git merge`)
 - Feature-based workflow
-
-### Praktik:
-- Membuat feature branch
-- Merge ke branch utama
 
 📌 Tutorial Git: 07
 
@@ -144,19 +105,9 @@ Peserta mampu:
 **Durasi:** 2 Jam  
 
 ### Materi:
-- GitHub sebagai remote repository
-- Remote command:
-  - `git remote`
-  - `git push`
-  - `git pull`
-  - `git fetch`
-- Perbedaan `git fetch` vs `git pull`
+- Remote repository (`git remote`)
+- Push, pull, fetch
 - Pull Request & Code Review
-
-### Praktik:
-- Studi kasus 2 developer
-- Pull Request & review
-- Merge branch ke `main`
 
 📌 Tutorial Git: 09, 10
 
@@ -167,15 +118,9 @@ Peserta mampu:
 
 ### Materi:
 - Penyebab merge conflict
-- Teknik penyelesaian conflict
+- Penyelesaian conflict
 - GitHub Issues
-- Workflow:
-  - Issue → Branch → Pull Request
-
-### Praktik:
-- Simulasi merge conflict
-- Penyelesaian conflict manual
-- Implementasi issue berbasis task
+- Workflow Issue → Branch → PR
 
 ---
 
@@ -183,17 +128,10 @@ Peserta mampu:
 **Durasi:** 2 Jam  
 
 ### Materi:
-- Konsep release dalam software development
-- Git Tag:
-  - Lightweight tag
-  - Annotated tag
-- Versioning:
-  - `v1.0`
-- Dokumentasi proyek (README & changelog)
-
-### Praktik:
-- Membuat tag release
-- Update dokumentasi proyek
+- Konsep release
+- Git Tag (lightweight & annotated)
+- Versioning release
+- Dokumentasi proyek
 
 📌 Tutorial Git: 11
 
@@ -202,20 +140,55 @@ Peserta mampu:
 ## PERTEMUAN 9 – Ujian Akhir & Sertifikasi
 **Durasi:** 2 Jam  
 
-### Ujian Praktik:
-- Membuat repository Git
-- Commit bertahap
-- Branching & merge
-- Pull Request
-- Conflict resolution
-- Release tag
+---
 
-### Ujian Teori:
-- Konsep Git & GitHub
-- Workflow kolaborasi
-- Best practice version control
+## SISTEM PENILAIAN BERBASIS 5 SKILL SET UTAMA
+
+### 1️⃣ Skill Set 1 – Dasar Git & Repository (20%)
+**Indikator:**
+- Instalasi & konfigurasi Git
+- Inisialisasi repository
+- Commit dasar & histori
 
 ---
+
+### 2️⃣ Skill Set 2 – Manajemen Revisi & Histori (20%)
+**Indikator:**
+- Penggunaan `git diff`
+- Analisis perubahan kode
+- Pengelolaan commit yang rapi
+
+---
+
+### 3️⃣ Skill Set 3 – Percabangan & Kontrol Versi (20%)
+**Indikator:**
+- Pembuatan branch
+- Merge branch
+- Penggunaan reset, restore, dan revert
+
+---
+
+### 4️⃣ Skill Set 4 – Kolaborasi GitHub (25%)
+**Indikator:**
+- Push & pull repository
+- Pull Request & code review
+- Penyelesaian merge conflict
+- Penggunaan GitHub Issues
+
+---
+
+### 5️⃣ Skill Set 5 – Release & Profesionalisme Proyek (15%)
+**Indikator:**
+- Pembuatan Git Tag
+- Versioning release
+- Dokumentasi repository (README)
+- Struktur repository profesional
+
+---
+
+**Total Bobot Penilaian:** 100%  
+**Nilai Kelulusan Minimum:** 70
+
 
 ## SISTEM PENILAIAN
 | Komponen | Bobot |
@@ -226,14 +199,33 @@ Peserta mampu:
 **Nilai Kelulusan Minimum:** 70
 
 ---
+## 📊 REKAP NILAI AKHIR SERTIFIKAT  
+**Kursus:** Git & GitHub for Software Development
 
-## SERTIFIKAT
-**Judul Sertifikat:**  
-**Git & GitHub for Software Development**
+### Identitas Peserta
+- **Nama Peserta** :
+- **Nomor Sertifikat** :
+- **GitHub Username** :
+- **Repository Ujian** :
 
-**Keterangan Sertifikat:**
-- Menyelesaikan pelatihan selama 18 jam
-- Menguasai Git & GitHub level industri
-- Mampu berkolaborasi dalam tim pengembang software
+---
 
+### Rekap Penilaian Berbasis Skill Set
+
+| No | Skill Set | Bobot | Nilai |
+|----|----------|-------|-------|
+| 1 | Dasar Git & Repository Management | 20% | |
+| 2 | Manajemen Revisi & Histori Versi | 20% | |
+| 3 | Percabangan & Kontrol Versi Lanjutan | 20% | |
+| 4 | Kolaborasi Tim Menggunakan GitHub | 25% | |
+| 5 | Release Management & Profesionalisme Proyek | 15% | |
+| | **TOTAL NILAI AKHIR** | **100%** | |
+
+---
+
+### Keputusan Sertifikasi
+- **Nilai Akhir** : ______  
+- **Status Kelulusan** :
+  - ☐ LULUS (KOMPETEN)
+  - ☐ TIDAK LULUS
 ---
