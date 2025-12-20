@@ -1,5 +1,5 @@
 # SILABUS RESMI FINAL  
-## Kursus Git, GitHub & CI/CD untuk Pengembangan Software
+## Kursus Git & GitHub untuk Pengembangan Software
 
 **Durasi Total:** 18 Jam  
 **Jumlah Pertemuan:** 9  
@@ -14,12 +14,11 @@
 Peserta mampu:
 1. Menggunakan Git sebagai Version Control System
 2. Mengelola revisi source code secara profesional
-3. Bekerja dengan GitHub untuk kolaborasi tim
-4. Mengelola branch, merge, dan conflict
-5. Menggunakan GitHub Actions untuk Continuous Integration
-6. Menerapkan containerization menggunakan Docker
-7. Memahami alur CI/CD modern (GitHub Actions & Komodo CI/CD)
-8. Menghasilkan repository GitHub siap standar industri
+3. Menggunakan GitHub sebagai remote repository
+4. Berkolaborasi dalam tim menggunakan GitHub
+5. Mengelola branch, merge, dan conflict
+6. Mengelola histori versi dan release proyek
+7. Menghasilkan repository GitHub sesuai standar industri
 
 ---
 
@@ -27,12 +26,11 @@ Peserta mampu:
 **Durasi:** 2 Jam  
 
 ### Materi:
-- Permasalahan pengelolaan source code tanpa VCS
-- Konsep Version Control System
+- Permasalahan pengelolaan source code tanpa Version Control
+- Konsep Version Control System (VCS)
 - Git vs VCS terpusat
-- Git sebagai Distributed VCS
-- Peran Git & GitHub di industri software
-- Overview DevOps & CI/CD pipeline
+- Git sebagai Distributed Version Control System
+- Peran Git & GitHub dalam pengembangan software modern
 
 ### Instalasi & Setup:
 - Instal Git (Windows / Linux / macOS)
@@ -181,68 +179,49 @@ Peserta mampu:
 
 ---
 
-## PERTEMUAN 8 – CI/CD: GitHub Actions, Docker & Komodo
-**Durasi:** 2 Jam  
-
-### Materi GitHub Actions:
-- Konsep Continuous Integration & Continuous Deployment
-- Workflow YAML
-- Trigger:
-  - `push`
-  - `pull_request`
-- Automated testing Python
-
-### Materi Docker:
-- Konsep container & image
-- Dockerfile untuk aplikasi Python
-- Build & run container
-
-### Materi Komodo CI/CD:
-- Konsep Komodo CI/CD
-- Integrasi GitHub dengan Komodo
-- Alur build, test, dan deploy
-
-### Praktik:
-- Membuat GitHub Actions sederhana
-- Build image Docker Python
-- Simulasi pipeline CI/CD
-
----
-
-## PERTEMUAN 9 – Release Management, Git Tag & Sertifikasi
+## PERTEMUAN 8 – Release Management & Git Tag
 **Durasi:** 2 Jam  
 
 ### Materi:
+- Konsep release dalam software development
 - Git Tag:
   - Lightweight tag
   - Annotated tag
-- Versioning release:
+- Versioning:
   - `v1.0`
-- Dokumentasi final proyek
+- Dokumentasi proyek (README & changelog)
+
+### Praktik:
+- Membuat tag release
+- Update dokumentasi proyek
+
+📌 Tutorial Git: 11
+
+---
+
+## PERTEMUAN 9 – Ujian Akhir & Sertifikasi
+**Durasi:** 2 Jam  
 
 ### Ujian Praktik:
-- Membuat repository baru
-- Commit & branching
-- Pull Request & merge
+- Membuat repository Git
+- Commit bertahap
+- Branching & merge
+- Pull Request
 - Conflict resolution
-- CI pipeline berjalan sukses
-- Tag release
+- Release tag
 
 ### Ujian Teori:
 - Konsep Git & GitHub
 - Workflow kolaborasi
-- CI/CD & Docker
-
-📌 Tutorial Git: 11
+- Best practice version control
 
 ---
 
 ## SISTEM PENILAIAN
 | Komponen | Bobot |
 |--------|------|
-| Praktik Git & GitHub | 50% |
-| CI/CD & Docker | 30% |
-| Teori | 20% |
+| Praktik Git & GitHub | 70% |
+| Teori | 30% |
 
 **Nilai Kelulusan Minimum:** 70
 
@@ -250,11 +229,11 @@ Peserta mampu:
 
 ## SERTIFIKAT
 **Judul Sertifikat:**  
-**Git, GitHub & CI/CD for Software Development**
+**Git & GitHub for Software Development**
 
 **Keterangan Sertifikat:**
 - Menyelesaikan pelatihan selama 18 jam
 - Menguasai Git & GitHub level industri
-- Memahami CI/CD berbasis Docker
+- Mampu berkolaborasi dalam tim pengembang software
 
 ---
