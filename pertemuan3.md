@@ -1,233 +1,247 @@
-# 📘 Panduan Praktik Detail Teknis
+# 📘 Panduan Praktik Pertemuan 3
 
-## Pertemuan 3 – Perbandingan Revisi Git (Single Developer – Python)
-
-**Studi Kasus:** API Perhitungan PPh 21 Indonesia (FastAPI)
+## Perbandingan Revisi Git (Single Developer – Python & FastAPI)
 
 ---
 
-## 🎯 Tujuan Praktik
+## 🎯 Tujuan Pembelajaran
 
-Peserta mampu:
+Setelah menyelesaikan praktikum ini, peserta mampu:
 
-* Membuat proyek FastAPI terstruktur
-* Mengimplementasikan perhitungan PPh 21 modular
-* Melakukan commit berbasis fitur
-* Membandingkan perubahan kode menggunakan `git diff`
+* Memahami **alur kerja Git** pada proyek Python
+* Menjelaskan **setiap perubahan kode** yang dibuat
+* Membuat **commit berbasis fitur** secara disiplin
+* Menggunakan `git diff` untuk membandingkan revisi
+
+> Fokus utama pertemuan ini **bukan ke FastAPI**, tetapi bagaimana Git mencatat perubahan kode FastAPI.
 
 ---
 
-## 🛠️ Persiapan Lingkungan
+## 🧠 Konsep Awal yang Perlu Dipahami
 
-```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install fastapi uvicorn
+### Apa itu Revisi dalam Git?
+
+Revisi adalah **setiap perubahan kondisi kode** yang dicatat Git dalam bentuk *commit*.
+
+Setiap commit menyimpan:
+
+* Snapshot file
+* Pesan perubahan
+* Waktu dan urutan perubahan
+
+Git memungkinkan kita:
+
+* Melihat perubahan
+* Membandingkan perubahan
+* Kembali ke kondisi sebelumnya
+
+---
+
+## 🗂️ Langkah 1 – Menyiapkan Struktur Proyek
+
+### Tujuan Langkah Ini
+
+Membuat struktur proyek yang rapi agar:
+
+* Perubahan mudah dilacak
+* `git diff` mudah dibaca
+
+### Struktur Folder
+
 ```
-
----
-
-## 📁 Struktur Proyek Target
-
-```text
-pph21-api/
+pph21-app/
 ├── app/
-│   ├── main.py
-│   ├── api/
-│   │   └── pph.py
-│   ├── services/
-│   │   └── calculator.py
-│   └── schemas/
-│       └── pph.py
-├── README.md
-└── .gitignore
+│   ├── main.py      # Endpoint API
+│   ├── tax.py       # Logika perhitungan pajak
+│   └── schemas.py   # Validasi data
+├── requirements.txt
+└── README.md
 ```
+
+> ⚠️ Jangan langsung menulis kode besar. Kita membangun **bertahap dan terukur**.
 
 ---
 
-## STEP 1 – Inisialisasi Git
+## 🔧 Langkah 2 – Inisialisasi Git Repository
+
+### Perintah
 
 ```bash
 git init
 git status
 ```
 
-Commit awal:
+### Penjelasan Teknis
 
-```bash
-git add .
-git commit -m "init: struktur awal proyek fastapi pph21"
+* `git init` → Membuat repository Git lokal
+* `git status` → Mengecek kondisi file (tracked/untracked)
+
+Output awal biasanya:
+
 ```
+Untracked files:
+  app/
+  requirements.txt
+  README.md
+```
+
+Artinya Git **belum mencatat apa pun**.
 
 ---
 
-## STEP 2 – FastAPI Baseline
+## 📝 Langkah 3 – Commit Pertama (Baseline Proyek)
 
-### `app/main.py`
+### Tujuan Commit
+
+Menyimpan kondisi awal proyek sebagai **titik pembanding**.
+
+### Perintah
+
+```bash
+git add .
+git commit -m "init fastapi pph21 project structure"
+```
+
+### Kenapa Commit Ini Penting?
+
+* Menjadi dasar perbandingan revisi
+* Memudahkan rollback di masa depan
+
+> ⚠️ Commit pertama **tidak berisi logika pajak**.
+
+---
+
+## 🧮 Langkah 4 – Menambahkan Fungsi Perhitungan Pajak
+
+### File: `app/tax.py`
+
+```python
+def calculate_pph21(annual_income: float) -> float:
+    """
+    Menghitung PPh21 sederhana 5%
+    """
+    return annual_income * 0.05
+```
+
+### Penjelasan Kode
+
+* `def` → keyword deklarasi fungsi
+* `annual_income: float` → type hint
+* `return` → hasil perhitungan
+
+> Di tahap ini **belum ada API**, hanya logika bisnis.
+
+---
+
+## 🔍 Langkah 5 – Melihat Perubahan dengan git diff
+
+### Perintah
+
+```bash
+git diff
+```
+
+### Apa yang Ditampilkan Git?
+
+* Baris hijau (`+`) → kode baru
+* Baris merah (`-`) → kode yang dihapus
+
+Git menunjukkan **perbedaan dengan commit terakhir**.
+
+> Biasakan selalu `git diff` sebelum commit.
+
+---
+
+## 💾 Langkah 6 – Commit Fitur Perhitungan Pajak
+
+### Perintah
+
+```bash
+git add app/tax.py
+git commit -m "add basic pph21 calculation function"
+```
+
+### Prinsip Commit yang Diterapkan
+
+* 1 commit = 1 fitur
+* Pesan commit jelas
+* File yang di-commit spesifik
+
+---
+
+## 🌐 Langkah 7 – Menambahkan Endpoint API
+
+### File: `app/main.py`
 
 ```python
 from fastapi import FastAPI
+from app.tax import calculate_pph21
+from app.schemas import IncomeRequest
 
-app = FastAPI(title="API PPh21")
+app = FastAPI()
 
-@app.get("/")
-def health_check():
-    return {"status": "ok"}
+@app.post("/pph21")
+def calculate_pph(data: IncomeRequest):
+    pph = calculate_pph21(data.annual_income)
+    return {"pph21": pph}
 ```
 
-Jalankan server:
+### Penjelasan Teknis
 
-```bash
-uvicorn app.main:app --reload
-```
-
-Commit:
-
-```bash
-git commit -am "feat: fastapi health check"
-```
+* `@app.post` → decorator endpoint
+* Pemanggilan fungsi pajak
+* Response berbentuk JSON
 
 ---
 
-## STEP 3 – Schema Validasi Input
+## 🔄 Langkah 8 – Membandingkan Revisi Antar Commit
 
-### `app/schemas/pph.py`
-
-```python
-from pydantic import BaseModel
-
-class PPhRequest(BaseModel):
-    gaji_pokok: int
-    tunjangan: int
-    bpjs: int
-    status_ptkp: str
-```
-
-Commit:
-
-```bash
-git add .
-git commit -m "feat: schema input pph21"
-```
-
-Gunakan diff:
+### Perintah
 
 ```bash
 git diff HEAD~1
 ```
 
----
+### Fungsi Perintah Ini
 
-## STEP 4 – Service Perhitungan Pajak
+Menampilkan perbedaan antara:
 
-### `app/services/calculator.py`
+* Commit sekarang
+* Commit sebelumnya
 
-```python
-PTKP = {
-    "TK/0": 54_000_000,
-    "K/0": 58_500_000,
-}
+Digunakan untuk:
 
-
-def hitung_bruto(gaji: int, tunjangan: int) -> int:
-    return gaji + tunjangan
-
-
-def hitung_netto(bruto: int, bpjs: int) -> int:
-    biaya_jabatan = min(bruto * 0.05, 500_000)
-    return bruto - biaya_jabatan - bpjs
-
-
-def hitung_pph_tahunan(netto_bulanan: int, status: str) -> float:
-    ptkp = PTKP.get(status, 54_000_000)
-    pkp = max(0, netto_bulanan * 12 - ptkp)
-
-    if pkp <= 60_000_000:
-        return pkp * 0.05
-
-    return 3_000_000 + (pkp - 60_000_000) * 0.15
-```
-
-Commit:
-
-```bash
-git commit -am "feat: service perhitungan pph21 modular"
-```
+* Review perubahan
+* Evaluasi kualitas commit
 
 ---
 
-## STEP 5 – API Endpoint Perhitungan
+## ⚠️ Kesalahan Umum yang Harus Dihindari
 
-### `app/api/pph.py`
-
-```python
-from fastapi import APIRouter
-from app.schemas.pph import PPhRequest
-from app.services.calculator import (
-    hitung_bruto,
-    hitung_netto,
-    hitung_pph_tahunan,
-)
-
-router = APIRouter(prefix="/pph", tags=["PPh21"])
-
-
-@router.post("/hitung")
-def hitung_pph(data: PPhRequest):
-    bruto = hitung_bruto(data.gaji_pokok, data.tunjangan)
-    netto = hitung_netto(bruto, data.bpjs)
-    pajak = hitung_pph_tahunan(netto, data.status_ptkp)
-
-    return {
-        "bruto": bruto,
-        "netto_bulanan": netto,
-        "pph21_tahunan": pajak,
-        "pph21_bulanan": pajak / 12,
-    }
-```
-
-Integrasi router di `main.py`:
-
-```python
-from app.api.pph import router as pph_router
-
-app.include_router(pph_router)
-```
-
-Commit:
-
-```bash
-git commit -am "feat: endpoint api perhitungan pph21"
-```
+* Commit banyak perubahan sekaligus
+* Tidak menggunakan `git diff`
+* Pesan commit tidak deskriptif
 
 ---
 
-## 🔍 Fokus Utama Git Diff
+## 🔗 Transisi ke Pertemuan 4
 
-Bandingkan perubahan antar fitur:
+Pada pertemuan selanjutnya, kita akan:
 
-```bash
-git diff HEAD~2 HEAD
-```
+* Membuat kesalahan tarif pajak
+* Membatalkan perubahan
+* Mempelajari `git restore`, `git reset`, dan `git revert`
 
-Diskusi:
-
-* Perubahan apa yang terjadi?
-* File mana yang bertambah?
-* Apakah commit sudah fokus satu fitur?
+> Git bukan untuk mencegah kesalahan, tetapi **mengelola kesalahan**.
 
 ---
 
-## 📌 Refleksi Akhir
+## ✅ Ringkasan
 
-* Logika bisnis **tidak** dicampur dengan API
-* Commit kecil = histori mudah dibaca
-* `git diff` membantu memahami evolusi kode
+Hari ini Anda belajar:
 
----
+* Menulis kode bertahap
+* Mencatat perubahan secara profesional
+* Membandingkan revisi kode
 
-## 🚀 Persiapan Pertemuan Selanjutnya
-
-* Buat **bug tarif pajak**
-* Commit kesalahan
-* Latihan `git restore`, `reset`, dan `revert`
+📌 **Git adalah alat berpikir, bukan hanya alat simpan.**
