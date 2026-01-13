@@ -331,4 +331,4 @@ Peserta mengumpulkan:
 
 ---
 
-**Status:** Final – Siap untuk Slide PPT, Praktik Industri, dan Penilaian Sertifikat
+**Status:** Final – Siap untuk Lab Praktik
