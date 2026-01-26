@@ -1,86 +1,96 @@
-# LAB PRAKTIK – PERTEMUAN 6
+# 📘 LANGKAH DETAIL PRAKTIK
 
-## Git Advanced Workflow, Release & Versioning (Lanjutan Pertemuan 5)
+## PERTEMUAN 6 – Git Advanced Workflow, Release & Versioning
 
 **Durasi:** 2 Jam
-**Mode:** Praktik Tim (2 Developer – GitHub)
-**Proyek:** FastAPI – Aplikasi Perhitungan PPh Indonesia
+**Model:** Praktik Terbimbing + Mandiri
+**Lanjutan dari:** Pertemuan 5 (GitHub Collaboration)
 
 ---
 
-## 🎯 Tujuan Pembelajaran
+## ⏱️ Alur Waktu Pembelajaran
 
-Setelah menyelesaikan lab ini, peserta mampu:
-
-1. Mengelola workflow Git tingkat lanjut
-2. Menggunakan Git Tag untuk versi aplikasi
-3. Membuat GitHub Release
-4. Mengelola hotfix tanpa merusak branch utama
-5. Mempersiapkan repository siap produksi
-
----
-
-## 🧠 Prasyarat
-
-* Lab Pertemuan 5 selesai
-* Repository sudah memiliki:
-
-  * Branch `main`
-  * Minimal 2 feature branch
-  * Pull Request & merge history
+| Waktu    | Aktivitas                 |
+| -------- | ------------------------- |
+| 15 menit | Review kondisi repository |
+| 20 menit | Konsep versioning & tag   |
+| 35 menit | Praktik Git Tag & Release |
+| 30 menit | Simulasi Hotfix           |
+| 20 menit | Tugas mandiri & evaluasi  |
 
 ---
 
-## 📌 Konsep Penting (Briefing Instruktur)
+## 🧠 STEP 0 – Review Repository (WAJIB)
 
-| Konsep     | Fungsi                   |
-| ---------- | ------------------------ |
-| Git Tag    | Penanda versi rilis      |
-| Release    | Snapshot siap deploy     |
-| Hotfix     | Perbaikan cepat produksi |
-| Versioning | Kontrol perubahan        |
+### Tujuan
 
----
+Memastikan semua peserta bekerja di kondisi repo yang sama dan stabil.
 
-## 🧪 PRAKTIK 1 – Menyiapkan Versi Aplikasi
-
-### Cek Kondisi Repository
+### Langkah Teknis
 
 ```bash
 git checkout main
 git pull origin main
-git log --oneline --decorate -5
+git status
 ```
 
-Pastikan:
+### Validasi
 
-* Branch `main` stabil
-* Tidak ada conflict
+* Branch aktif: `main`
+* Status: `working tree clean`
 
 ---
 
-## 🧪 PRAKTIK 2 – Penomoran Versi (Semantic Versioning)
+## 🧩 STEP 1 – Memahami Versi Aplikasi
 
-Gunakan format:
+### Penjelasan Instruktur
+
+Dalam dunia nyata:
+
+* Setiap aplikasi **harus memiliki versi**
+* Versi menandakan **snapshot kode**
+* Versi digunakan untuk:
+
+  * rollback
+  * audit
+  * troubleshooting
+
+### Skema yang Digunakan
+
+**Semantic Versioning**
 
 ```text
 vMAJOR.MINOR.PATCH
 ```
 
-Contoh:
+---
 
-* `v1.0.0` → rilis pertama
-* `v1.0.1` → bugfix
-* `v1.1.0` → fitur baru
+## 🧪 STEP 2 – Menentukan Versi Rilis Pertama
+
+### Studi Kasus
+
+Aplikasi PPh sudah memiliki:
+
+* Register karyawan
+* Rule pajak SQLite
+* Kalkulator PPh
+
+➡️ Layak rilis sebagai **v1.0.0**
 
 ---
 
-## 🧪 PRAKTIK 3 – Membuat Git Tag
+## 🧪 STEP 3 – Membuat Git Tag (Annotated)
 
-### Tag Annotated (Disarankan)
+### Kenapa Annotated Tag?
+
+* Memiliki metadata
+* Bisa diberi pesan
+* Direkomendasikan untuk release
+
+### Langkah Teknis
 
 ```bash
-git tag -a v1.0.0 -m "Release pertama aplikasi PPh"
+git tag -a v1.0.0 -m "Release v1.0.0 - PPh Calculator"
 ```
 
 Cek tag:
@@ -90,113 +100,159 @@ git tag
 git show v1.0.0
 ```
 
-Push tag ke GitHub:
+---
+
+## 🧪 STEP 4 – Push Tag ke GitHub
 
 ```bash
 git push origin v1.0.0
 ```
 
+### Validasi
+
+* Tag muncul di GitHub
+* Tidak ada error push
+
 ---
 
-## 🧪 PRAKTIK 4 – Membuat GitHub Release
+## 🧪 STEP 5 – Membuat GitHub Release
 
-### Langkah (Web GitHub)
+### Langkah di GitHub UI
 
-1. Buka tab **Releases**
+1. Masuk ke tab **Releases**
 2. Klik **Draft new release**
-3. Pilih tag `v1.0.0`
+3. Pilih tag: `v1.0.0`
 4. Judul: `Release v1.0.0`
-5. Deskripsi:
+5. Isi release notes:
 
 ```text
-- Fitur register karyawan
-- Kalkulator PPh berbasis rule SQLite
-- API FastAPI siap digunakan
+Initial stable release:
+- Employee registration API
+- Tax rule management (SQLite)
+- PPh calculation endpoint
 ```
 
-6. Publish release
+6. Klik **Publish release**
 
 ---
 
-## 🧪 PRAKTIK 5 – Simulasi Hotfix Produksi
+## 🧪 STEP 6 – Simulasi Masalah Produksi
 
-### Studi Kasus
+### Studi Kasus Bug
 
-Terdapat bug:
+Jika income = 0:
 
-> Perhitungan PPh mengembalikan nilai negatif jika income = 0
+* Sistem menghasilkan PPh negatif
+
+➡️ **BUG PRODUKSI**
 
 ---
 
-### Langkah Hotfix
+## 🧪 STEP 7 – Membuat Branch Hotfix
+
+### Kenapa Hotfix?
+
+* Tidak menunggu fitur baru
+* Langsung perbaiki produksi
 
 ```bash
-git checkout -b hotfix/pph-zero-bug
+git checkout -b hotfix/pph-zero-income
 ```
 
-Perbaiki kode:
+---
+
+## 🧪 STEP 8 – Perbaikan Kode (Hotfix)
+
+### File: `tax_rule_service.py`
 
 ```python
-if income <= 0:
-    return 0
+def calculate_pph(db, income):
+    if income <= 0:
+        return 0
+    # logic existing
 ```
 
-Commit:
+---
+
+## 🧪 STEP 9 – Commit Hotfix
 
 ```bash
-git add .
-git commit -m "fix: prevent negative pph when income is zero"
+git add services/tax_rule_service.py
+git commit -m "fix: handle zero or negative income in pph calculation"
 ```
 
-Merge ke main:
+📌 Commit **kecil & fokus**
+
+---
+
+## 🧪 STEP 10 – Merge Hotfix ke Main
 
 ```bash
 git checkout main
-git merge hotfix/pph-zero-bug
+git merge hotfix/pph-zero-income
 ```
+
+### Validasi
+
+* Tidak ada conflict
+* Kode berjalan normal
 
 ---
 
-## 🧪 PRAKTIK 6 – Tag Versi Hotfix
+## 🧪 STEP 11 – Tag Versi Hotfix
+
+### Versi Baru
+
+```text
+v1.0.1
+```
 
 ```bash
-git tag -a v1.0.1 -m "Hotfix: PPh zero income"
+git tag -a v1.0.1 -m "Hotfix: zero income handling"
 git push origin v1.0.1
 ```
 
 ---
 
-## 📊 Evaluasi Praktik
+## 🧪 STEP 12 – Update GitHub Release
 
-| Aspek    | Indikator                 |
-| -------- | ------------------------- |
-| Tag      | Menggunakan annotated tag |
-| Release  | Deskripsi jelas           |
-| Hotfix   | Branch terpisah           |
-| Commit   | Deskriptif                |
-| Workflow | Tidak langsung edit main  |
+* Buat release baru `v1.0.1`
+* Catat perubahan hotfix
 
 ---
 
-## 📝 TUGAS MANDIRI PESERTA
+## 📝 STEP 13 – TUGAS MANDIRI PESERTA
 
-1. Tambahkan perubahan kecil (validasi input)
-2. Buat tag versi `v1.1.0`
-3. Buat release note singkat
-4. Kirim link release ke instruktur
+1. Tambahkan validasi input salary > 0
+2. Commit dengan pesan tepat
+3. Buat tag `v1.1.0`
+4. Buat release note singkat
 
 ---
 
-## 🏁 Output Akhir
+## 📊 STEP 14 – Evaluasi Instruktur
 
-* Repository dengan:
+| Aspek   | Lulus Jika              |
+| ------- | ----------------------- |
+| Tag     | Annotated & benar versi |
+| Release | Notes jelas             |
+| Hotfix  | Branch terpisah         |
+| Commit  | Tidak generik           |
+| Alur    | Sesuai best practice    |
 
-  * Tag versi
-  * Release GitHub
-  * Riwayat hotfix
-* Siap dinilai untuk sertifikat
+---
+
+## 🏁 OUTPUT AKHIR PERTEMUAN 6
+
+* Repository siap produksi
+* Versi rilis terdokumentasi
+* Peserta memahami:
+
+  * kapan tag
+  * kapan hotfix
+  * kapan release
 
 ---
 
 📌 **Catatan Instruktur:**
-Pertemuan ini menilai **Skill Set: Git Versioning & Release Management**
+Materi ini adalah **standar industri** dan sangat menentukan kelulusan sertifikat.
